@@ -47,21 +47,26 @@
 		<div id="results">
 		</div>
   
-  <input ng-model="name" placeholder="Type world..."> Hello {{name}}
+  <input ng-model="name" placeholder="Your Search..."> Hello {{name}} <select>
+    <option value="document">Entire Document</option>
+	<option value="title">Title</option>
+	<option value="author">Author</option>
+	<option value="tags">Tags</option>
+  </select>
   
   <ul>
     <li ng-repeat="todo in todos">
 	  <input type="checkbox" ng-model="todo.completed">
-        {{ todo.name }}
+        {{ todo.title }}, {{ todo.author }} | {{ todo.tags }}
 	</li>
   </ul>
 
   <script>
     function TodoController($scope){
 	  $scope.todos = [
-	    { name: 'Blah', completed: true },
-		{ name: 'Maya', completed: false },
-		{ name: 'Oyasama', completed: false }
+	    { title: 'The Anecdotes of Blah', author: 'Matthew', description: 'This is a book of anecdotes', contributors: 'Matt Sabban', source: 'Book of Oyasama', doc_type: 'text', language: 'en', tags: ["Anecdotes", "Oyasama", "History"], content: null, url: null, completed: true },
+		{ title: '10 Things I know about you', author: 'Kay Sabban', description: 'This is a book of things', contributors: 'Matt Sabban', source: 'Book of Oyasama', doc_type: 'text', language: 'en', tags: ["Anecdotes", "Oyasama", "History"], content: null, url: null, completed: false },
+		{ title: 'Maya Himawari', author: 'Matthew', description: 'The life story of Maya Himawari', contributors: 'Matt & Kay Sabban', source: 'Book of Oyasama', doc_type: 'text', language: 'en', tags: ["Anecdotes", "Oyasama", "History"], content: null, url: null, completed: false }
 	  ]
 	}
   </script>
