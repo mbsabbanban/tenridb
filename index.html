@@ -1,0 +1,69 @@
+<html ng-app>
+<head>
+  <title>TenriDB Angular Front End</title>
+  <link rel="stylesheet" type="text/css" href="index_style.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+</head>
+
+<body ng-controller="TodoController">
+  <header>
+    <div class="bg-header">
+	  <img id="header_logo" src="http://anecdotes.mattsabban.com/emblem_100x100.png" alt="tenrikyo_logo">
+	  <h1>TenriDB: Database of Tenrikyo Literature</h1>
+	</div>
+  </header>
+  
+  		<div id="core" class="clearfix">
+		
+		<!--
+			<section id="left">
+				<p>Find Literature</p>
+				<div id="form" class="formfix">
+					<form method="post" action="/tenrikyo_webapp.php" name="searchForm">
+					<input type="number" placeholder="Story Number" name="Story_Number" pattern="[-0-9]+"></br>
+					<input type="text" placeholder="Title" name="Title"></br>
+					<input type="text" placeholder="Content like..." name="Content"></br>
+					<input type="number" placeholder="Page number" name="Page_Number" pattern="[-0-9]+"></br>
+					<input type="submit" class="submit" name="search" value="Search">
+					<input type="submit" class="submit" name="viewAll" value="View All">
+					</form>
+										
+				</div>
+			</section>
+			
+			-->
+			
+			<section id="intro">
+				<h2>Welcome to TenriDB, an Open-Source Knowledgebase of all things Tenrikyo. You will find various translations of various speeches, texts, and other documentation related to Tenrikyo that has been compiled by our team.</h2>
+				<br>
+				<p>If you would like to contribute to the TenriDB project, please submit an email to <a href="mailto:tymanany@gmail.com?Subject=Contribute%20to%20TenriDB" target="_top">tymanany@gmail.com</a></p>
+				<p>When in doubt, please consult with your local reverend or with the official translation.</p>
+			</section>
+		
+			
+			<!-- I will probably create a new section down here for the Search Results to Populate after making the database call -->
+		</div>
+		
+		<div id="results">
+		</div>
+  
+  <input ng-model="name" placeholder="Type world..."> Hello {{name}}
+  
+  <ul>
+    <li ng-repeat="todo in todos">
+	  <input type="checkbox" ng-model="todo.completed">
+        {{ todo.name }}
+	</li>
+  </ul>
+
+  <script>
+    function TodoController($scope){
+	  $scope.todos = [
+	    { name: 'Blah', completed: true },
+		{ name: 'Maya', completed: false },
+		{ name: 'Oyasama', completed: false }
+	  ]
+	}
+  </script>
+</body>
+</html>
