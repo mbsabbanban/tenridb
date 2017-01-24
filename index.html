@@ -55,22 +55,41 @@
 	<option value="tags">Tags</option>
   </select>
   
+  <ng-view></ng-view>
+  
+  <!-- Template -->
+  <script type="text/ng-template" id="/todos.html">
   <ul>
     <li ng-repeat="todo in todos">
 	  <input type="checkbox" ng-model="todo.completed">
-        {{ todo.title }}, {{ todo.author }} | {{ todo.tags }}
+        <a href="#/{{$index}}">{{ todo.title }}, {{ todo.author }} | {{ todo.tags }}</a>
 	</li>
   </ul>
+  </script>
+  
+  <script type="text/ng-template" id="/todoDetails.html">
+    <h1> {{ todo.name }} </h1>
+	completed: <input type="checkbox" ng-model="todo.completed">
+	note: <textarea> {{ todo.source }}</textarea>
+  </script>
 
   <script>
   angular.module('app',['ngRoute'])
   
-    .controller('TodoController', ['$scope', function($scope){
-	  $scope.todos = [
+    .factory('Todos', function(){
+	  return [
 	    { title: 'The Anecdotes of Blah', author: 'Matthew', description: 'This is a book of anecdotes', contributors: 'Matt Sabban', source: 'Book of Oyasama', doc_type: 'text', language: 'en', tags: ["Anecdotes", "Oyasama", "History"], content: null, url: null, completed: true },
 		{ title: '10 Things I know about you', author: 'Kay Sabban', description: 'This is a book of things', contributors: 'Matt Sabban', source: 'Book of Oyasama', doc_type: 'text', language: 'en', tags: ["Anecdotes", "Oyasama", "History"], content: null, url: null, completed: false },
 		{ title: 'Maya Himawari', author: 'Matthew', description: 'The life story of Maya Himawari', contributors: 'Matt & Kay Sabban', source: 'Book of Oyasama', doc_type: 'text', language: 'en', tags: ["Anecdotes", "Oyasama", "History"], content: null, url: null, completed: false }
 	  ];
+	})
+	
+    .controller('TodoController', ['$scope', 'Todos', function($scope, Todos){
+	  $scope.todo = Todos;
+	}])
+	
+	.controller('TodoDetailCtrl',['$scope', '$routeParams', 'Todos', function($scope, $routeParams, Todos){
+	  $scope.todo = Todos[$routeParams.id];
 	}])
   
     .config(['$routeProvider', function ($routeProvider){
@@ -79,6 +98,12 @@
 		  templateUrl: '/todos.html',
 		  controller: 'TodoController'
 		});
+		
+		.when('/:id', {
+		  templateUrl: 'todoDetails.html',
+		  controller: 'TodoDetailCtrl'
+		});
+		
 	}]);
   </script>
 </body>
