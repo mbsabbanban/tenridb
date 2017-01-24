@@ -1,8 +1,9 @@
-<html ng-app>
+<html ng-app="app">
 <head>
   <title>TenriDB Angular Front End</title>
   <link rel="stylesheet" type="text/css" href="index_style.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
 </head>
 
 <body ng-controller="TodoController">
@@ -62,13 +63,23 @@
   </ul>
 
   <script>
-    function TodoController($scope){
+  angular.module('app',['ngRoute'])
+  
+    .controller('TodoController', ['$scope', function($scope){
 	  $scope.todos = [
 	    { title: 'The Anecdotes of Blah', author: 'Matthew', description: 'This is a book of anecdotes', contributors: 'Matt Sabban', source: 'Book of Oyasama', doc_type: 'text', language: 'en', tags: ["Anecdotes", "Oyasama", "History"], content: null, url: null, completed: true },
 		{ title: '10 Things I know about you', author: 'Kay Sabban', description: 'This is a book of things', contributors: 'Matt Sabban', source: 'Book of Oyasama', doc_type: 'text', language: 'en', tags: ["Anecdotes", "Oyasama", "History"], content: null, url: null, completed: false },
 		{ title: 'Maya Himawari', author: 'Matthew', description: 'The life story of Maya Himawari', contributors: 'Matt & Kay Sabban', source: 'Book of Oyasama', doc_type: 'text', language: 'en', tags: ["Anecdotes", "Oyasama", "History"], content: null, url: null, completed: false }
-	  ]
-	}
+	  ];
+	}])
+  
+    .config(['$routeProvider', function ($routeProvider){
+	  $routeProvider
+	    .when('/', {
+		  templateUrl: '/todos.html',
+		  controller: 'TodoController'
+		});
+	}]);
   </script>
 </body>
 </html>
