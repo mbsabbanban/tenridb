@@ -1,0 +1,12 @@
+{% extends "tenridb-anecdotes.html" %}
+{% block anecdotes_content %}
+
+<br><br>
+  <h2>Here's the Anecdote that you were looking for:</h2>
+
+    {% for anec in anecdote %}
+    <p>ID: {{anec.id}}</p>
+    <p>TITLE: {{anec.title}}</p>
+    {% endfor %}
+
+{% endblock %}

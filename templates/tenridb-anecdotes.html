@@ -1,0 +1,18 @@
+{% extends "tenridb-base.html" %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+<h1>These are the 'Anecdotes of Oyasama', hosted on TenriDB.</h1>
+  </div>
+</div>
+
+<!--put a button here to "RETRIEVE ALL" -->
+
+<form action="{{url_for('anecdotes_all')}}" method="POST">
+  <button type="submit" action="/anecdotes_all" class="btn btn-primary btn-lg">Retrieve All Anecdotes</button>
+</form>
+
+  {% block anecdotes_content %}
+  {% endblock %}
+
+{% endblock %}

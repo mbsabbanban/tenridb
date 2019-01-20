@@ -1,0 +1,27 @@
+{% extends "tenridb-anecdotes.html" %}
+{% block anecdotes_content %}
+
+<br><br>
+  <h2>Here's a list of all available anecdotes:</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for anecdote in anecdotes %}
+
+    <tr>
+      <th scope="row">{{anecdote.id}}</th>
+      <td>{{anecdote.title}}</td>
+    </tr>
+
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
