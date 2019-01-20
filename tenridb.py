@@ -43,6 +43,7 @@ def anecdotes_all():
 
 
 @app.route('/anecdotes/<anecdote_id>')
+#Dynamic Route for different Articles
 def anecdote(anecdote_id):
     #page for an individual anecdote
     anecdote = Anecdotes.query.filter_by(id=anecdote_id).all()
@@ -74,12 +75,6 @@ def progress():
     #return what would eventually be the template for Progress notes
     #this page will be return a directory listing of all the progresses -- grid view?
     return render_template('tenridb-progress.html')
-
-
-#Adding a Dynamic Route for different Articles
-@app.route('/anecdotes/<story_number>')
-def dynamic_anecotes(story_number):
-    return "<h1>This is the story number: {}</h1>".format(story_number)
 
 
 
